@@ -4,15 +4,14 @@ backend:
     build:
       commands:
         - node -v  # Verify the correct Node.js version
-        - nvm install 18.19.0
-        - nvm use 18.19.0
+        #- nvm install 18.19.0
+        #- nvm use 18.19.0
         - cd frontend
         - npm i
 frontend:
   phases:
     build:
       commands:
-        #- cd frontend
         - npm run build
   artifacts:
     baseDirectory: dist
