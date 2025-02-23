@@ -3,8 +3,6 @@ backend:
   phases:
     build:
       commands:
-        #- nvm install 18.19.0
-        #- nvm use 18.19.0
         - node -v  # Verify the correct Node.js version
         - npm i
 frontend:
