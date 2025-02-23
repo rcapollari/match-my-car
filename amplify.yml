@@ -4,6 +4,7 @@ backend:
     build:
       commands:
         - node -v  # Verify the correct Node.js version
+        - cd frontend
         - npm i
 frontend:
   phases:
