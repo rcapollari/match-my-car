@@ -12,7 +12,7 @@ frontend:
   phases:
     build:
       commands:
-        - cd frontend
+        #- cd frontend
         - npm run build
   artifacts:
     baseDirectory: dist
