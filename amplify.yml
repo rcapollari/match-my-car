@@ -1,0 +1,20 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - node -v  # Verify the correct Node.js version
+        - npm i
+frontend:
+  phases:
+    build:
+      commands:
+        - cd frontend
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .npm/**/*
