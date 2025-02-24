@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function Form () {
-    const [minPrice, setMinPrice] = useState("");
+function Form() {
+  const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [location, setLocation] = useState("");
   const [carType, setCarType] = useState({
@@ -9,7 +10,18 @@ function Form () {
     suv: false,
     truck: false,
   });
-  const [carMake, setCarMake] = useState("");
+  const [carMake, setCarMake] = useState([]);
+  const [makes, setMakes] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/makes")
+      .then((response) => {
+        setMakes(response.data.data || []); // Store the "data" array from API response
+      })
+      .catch((err) => {
+        console.error("API Error:", err);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,18 +112,13 @@ function Form () {
             value={carMake}
             onChange={(e) => setCarMake(e.target.value)}
           >
-            <option value="" disabled selected={carMake === ""}>
-              Select an Option
-            </option>
+            <option value="" disabled selected={carMake === ""}>Select an Option</option>
 
-            <option value="1">Jeep</option>
-            <option value="2">Audi</option>
-            <option value="3">Cadillac</option>
-            <option value="4">Volkswagen</option>
-            <option value="5">Toyota</option>
-            <option value="6">Ford</option>
-            <option value="7">Chevrolet</option>
-            <option value="8">Nissan</option>
+            {makes.map((make) => (
+              <option key={make.id} value={make.name}>
+                {make.name}
+              </option>
+            ))}
           </select>
           <button type="reset" value="reset" onClick={() => handleReset()}>
             Reset
