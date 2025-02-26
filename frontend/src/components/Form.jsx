@@ -14,7 +14,7 @@ function Form() {
   const [makes, setMakes] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/makes")
+    axios.get("https://main.d1ti9uu007hfrs.amplifyapp.com/api/makes")
       .then((response) => {
         setMakes(response.data.data || []); // Store the "data" array from API response
       })

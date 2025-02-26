@@ -5,11 +5,6 @@ import requests
 app = Flask(__name__)
 cors = CORS(app, origins='*')
 
-# Test route
-@app.route("/api/users", methods=["GET"])
-def users():
-    return jsonify({"users": ["Alice", "Bob", "Charlie"]})
-
 CAR_API = "https://carapi.app/api/makes"
 
 @app.route("/api/makes", methods=["GET"])
@@ -22,4 +17,4 @@ def makes():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(debug=True, host="0.0.0.0", port=8080)
